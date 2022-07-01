@@ -1,0 +1,64 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    name: mysql-database
+    restart: always
+    ports:
+      - '3306:3306'
+    volumes:
+      /var/lib/mysql  
+
+  redis:
+    image: redis:6.2.6
+    restart: always
+    container_name: redis-cache
+    expose:
+      - 6379
+
+  node-app:
+    build: .
+    image: node:16
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mysql
+      - redis
+
+
+
+# version: '3.8'
+
+# services:
+#   mysqldb:
+#     image: mysql:5.7
+#     restart: unless-stopped
+#     env_file: ./.env
+#     environment:
+#       - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+#       - MYSQL_DATABASE=$MYSQLDB_DATABASE
+#     ports:
+#       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+#     volumes:
+#       - db:/var/lib/mysql
+#   app:
+#     depends_on:
+#       - mysqldb
+#     build: ./bezkoder-app
+#     restart: unless-stopped
+#     env_file: ./.env
+#     ports:
+#       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+#     environment:
+#       - DB_HOST=mysqldb
+#       - DB_USER=$MYSQLDB_USER
+#       - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+#       - DB_NAME=$MYSQLDB_DATABASE
+#       - DB_PORT=$MYSQLDB_DOCKER_PORT
+#     stdin_open: true
+#     tty: true
+
+# volumes: 
+#   db:      
+

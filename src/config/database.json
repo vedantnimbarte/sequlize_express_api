@@ -1,0 +1,26 @@
+{
+    "development": {
+        "username": "deepesh",
+        "password": "12345678",
+        "database": "TEST",
+        "host": "143.110.183.1",
+        "port": 3306,
+        "dialect": "mysql"
+    },
+    "test": {
+        "username": "deepesh",
+        "password": "12345678",
+        "database": "TEST",
+        "host": "143.110.183.1",
+        "port": 3306,
+        "dialect": "mysql"
+    },
+    "production": {
+        "username": "deepesh",
+        "password": "12345678",
+        "database": "TEST",
+        "host": "143.110.183.1",
+        "port": 3306,
+        "dialect": "mysql"
+    }
+}
